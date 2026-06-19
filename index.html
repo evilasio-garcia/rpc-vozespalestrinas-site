@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vozes Palestrinas — Algo grande vem aí</title>
+  <meta name="description" content="O videocast da torcida do Palmeiras está preparando uma surpresa. Hoje, durante o jogo do Brasil. Fica de olho no nosso Instagram." />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <!-- Open Graph para compartilhamento -->
+  <meta property="og:title" content="Vozes Palestrinas — Algo grande vem aí" />
+  <meta property="og:description" content="Uma surpresa à altura da maior torcida do mundo. Hoje, durante o jogo do Brasil." />
+  <meta property="og:image" content="assets/vozes-palestrinas-logo.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      /* Verde e branco — Palmeiras */
+      --green-deep: #06321e;
+      --green: #0a6b3e;
+      --green-mid: #0f7d49;
+      --green-light: #1f9a60;
+      --white: #f3f7f1;
+      --cream: #ece3c8;       /* eco da logo */
+      --cream-soft: #cfdbcd;
+      --gold: #d8b44a;        /* destaque da "surpresa" */
+      --gold-soft: #b8923a;
+      --ink: rgba(0, 0, 0, 0.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: safe center;
+      padding: clamp(1.4rem, 4vw, 2.6rem);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 50% 28%, var(--green-light) 0%, var(--green) 36%, var(--green-deep) 100%);
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Vinheta + grão */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 2;
+      background: radial-gradient(circle at 50% 44%, transparent 44%, rgba(0, 0, 0, 0.5) 100%);
+    }
+    body::after {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; opacity: 0.06; z-index: 3;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Moldura art-déco */
+    .frame {
+      position: fixed;
+      inset: clamp(0.9rem, 2.4vw, 1.8rem);
+      border: 1px solid rgba(216, 180, 74, 0.5);
+      box-shadow: inset 0 0 0 4px rgba(6, 50, 30, 0.6),
+                  inset 0 0 0 5px rgba(216, 180, 74, 0.25);
+      pointer-events: none; z-index: 4;
+    }
+    .frame span { position: absolute; width: 26px; height: 26px; border: 2px solid var(--gold); }
+    .frame span:nth-child(1) { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+    .frame span:nth-child(2) { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
+    .frame span:nth-child(3) { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
+    .frame span:nth-child(4) { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+    main {
+      position: relative; z-index: 1; text-align: center;
+      max-width: 40rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: clamp(1rem, 2.6vw, 1.5rem);
+      margin-block: auto;
+    }
+
+    /* ---- Disco de vinil com a logo como selo (identidade videocast) ---- */
+    .stage { position: relative; display: grid; place-items: center; padding: clamp(0.4rem, 3vw, 1.4rem); }
+    .stage::before {
+      content: "";
+      position: absolute; width: 132%; aspect-ratio: 1; border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 180, 74, 0.18) 0%, transparent 62%);
+      z-index: 0;
+    }
+    .record {
+      position: relative;
+      width: clamp(170px, 42vw, 250px);
+      aspect-ratio: 1; border-radius: 50%;
+      display: grid; place-items: center;
+      background:
+        repeating-radial-gradient(circle at center, #06160e 0px, #06160e 1px, #0d271b48 2px, #0d271b48 4px),
+        radial-gradient(circle at center, #134029 0%, #050f09 100%);
+      box-shadow: 0 28px 60px -18px rgba(0, 0, 0, 0.78),
+                  inset 0 0 50px rgba(0, 0, 0, 0.62),
+                  0 0 0 1px rgba(216, 180, 74, 0.22);
+      animation: spin 16s linear infinite;
+    }
+    .record::after {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, transparent 32%, transparent 68%, rgba(255, 255, 255, 0.08) 100%);
+      mix-blend-mode: screen; pointer-events: none;
+    }
+    .label {
+      width: 56%; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 0 6px var(--green), 0 0 0 7px rgba(0, 0, 0, 0.4), 0 8px 22px rgba(0, 0, 0, 0.5);
+      position: relative; z-index: 1;
+    }
+    .label img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .label::after {
+      content: ""; position: absolute; top: 50%; left: 50%;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--green-deep); box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.55);
+      transform: translate(-50%, -50%);
+    }
+    @media (prefers-reduced-motion: reduce) { .record { animation: none; } }
+
+    /* ---- Badge "ao vivo / hoje" ---- */
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: "Cinzel", serif; font-weight: 600;
+      font-size: clamp(0.62rem, 2vw, 0.74rem);
+      letter-spacing: 0.26em; text-transform: uppercase; text-indent: 0.26em;
+      color: var(--gold);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(216, 180, 74, 0.45);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(2px);
+    }
+    .badge .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 0 0 rgba(216, 180, 74, 0.6);
+      animation: pulse 1.8s ease-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) { .badge .dot { animation: none; } }
+
+    /* ---- Tipografia ---- */
+    .eyebrow {
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(1.7rem, 6vw, 2.5rem);
+      color: var(--gold); line-height: 1;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+    }
+    h1 {
+      font-family: "Cinzel", serif; font-weight: 700;
+      letter-spacing: 0.16em; text-indent: 0.16em;
+      font-size: clamp(1.7rem, 6vw, 3rem);
+      color: var(--white); text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+    h1 .accent { color: var(--gold); }
+
+    .divider {
+      display: flex; align-items: center; gap: 0.8rem;
+      color: var(--gold); width: min(320px, 80%);
+    }
+    .divider::before, .divider::after {
+      content: ""; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .divider svg { width: 18px; height: 18px; fill: var(--gold); flex: none; }
+
+    p.lead {
+      font-size: clamp(1.12rem, 3.4vw, 1.42rem);
+      line-height: 1.6; color: var(--cream-soft);
+      font-style: italic; max-width: 32rem;
+    }
+    p.lead strong { color: var(--white); font-weight: 600; font-style: normal; }
+
+    /* ---- CTA Instagram ---- */
+    .cta {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      font-family: "Cinzel", serif; font-weight: 600;
+      font-size: clamp(0.82rem, 2.6vw, 0.98rem);
+      letter-spacing: 0.12em; text-indent: 0.12em; text-transform: uppercase;
+      text-decoration: none;
+      color: var(--green-deep);
+      background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+      padding: 0.85rem 1.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(216, 180, 74, 0.6);
+      box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    }
+    .cta:hover, .cta:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px -10px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      filter: brightness(1.04);
+      outline: none;
+    }
+    .cta svg { width: 22px; height: 22px; fill: var(--green); flex: none; }
+    .cta .handle { font-family: "Cormorant Garamond", serif; font-style: italic; letter-spacing: normal; text-indent: 0; font-weight: 600; }
+
+    footer {
+      font-family: "Cinzel", serif;
+      font-size: clamp(0.65rem, 2vw, 0.78rem);
+      letter-spacing: 0.32em; text-transform: uppercase; text-indent: 0.32em;
+      color: rgba(207, 219, 205, 0.7);
+    }
+
+    /* ---- Animações ---- */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(216, 180, 74, 0.6); }
+      70%  { box-shadow: 0 0 0 9px rgba(216, 180, 74, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(216, 180, 74, 0); }
+    }
+    .reveal { opacity: 0; transform: translateY(16px); animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.32s; }
+    .d3 { animation-delay: 0.5s; }
+    .d4 { animation-delay: 0.68s; }
+    .d5 { animation-delay: 0.86s; }
+    .d6 { animation-delay: 1.04s; }
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; animation: none; } }
+  </style>
+</head>
+<body>
+  <div class="frame"><span></span><span></span><span></span><span></span></div>
+
+  <main>
+    <div class="stage reveal d1">
+      <div class="record">
+        <div class="label">
+          <img src="assets/vozes-palestrinas-logo.jpg" alt="Logo do videocast Vozes Palestrinas" />
+        </div>
+      </div>
+    </div>
+
+    <span class="eyebrow reveal d2">Vozes Palestrinas</span>
+
+    <span class="badge reveal d2"><span class="dot" aria-hidden="true"></span>Hoje • durante o jogo do Brasil</span>
+
+    <h1 class="reveal d3">Algo grande <span class="accent">vem aí</span></h1>
+
+    <div class="divider reveal d3" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2H22l-6 4.6 2.4 7.2L12 16.6 5.6 21l2.4-7.2-6-4.6h7.6z"/></svg>
+    </div>
+
+    <p class="lead reveal d4">
+      Estamos preparando uma surpresa à altura da maior torcida do mundo.
+      Hoje, enquanto o Brasil entra em campo, a resenha esquenta — e o Verdão está no centro de tudo.
+      <br /><strong>Fica de olho. Você não vai querer ficar de fora.</strong>
+    </p>
+
+    <a class="cta reveal d5" href="https://www.instagram.com/vozes_palestrinas/" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.4.36 1 .42 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.4.17-1 .36-2.2.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5 0-4.74.07-.9.04-1.4.2-1.72.32-.43.17-.74.37-1.06.7-.32.32-.52.63-.7 1.06-.12.32-.28.82-.32 1.72C3.4 8.5 3.4 8.85 3.4 12s0 3.5.07 4.74c.04.9.2 1.4.32 1.72.17.43.37.74.7 1.06.32.32.63.52 1.06.7.32.12.82.28 1.72.32 1.24.07 1.6.07 4.74.07s3.5 0 4.74-.07c.9-.04 1.4-.2 1.72-.32.43-.17.74-.37 1.06-.7.32-.32.52-.63.7-1.06.12-.32.28-.82.32-1.72.07-1.24.07-1.6.07-4.74s0-3.5-.07-4.74c-.04-.9-.2-1.4-.32-1.72-.17-.43-.37-.74-.7-1.06-.32-.32-.63-.52-1.06-.7-.32-.12-.82-.28-1.72-.32C15.5 4 15.15 4 12 4zm0 3.06A4.94 4.94 0 1 1 12 16.94 4.94 4.94 0 0 1 12 7.06zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zm6.3-.36a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0z"/>
+      </svg>
+      Acompanhe no Instagram <span class="handle">@vozes_palestrinas</span>
+    </a>
+
+    <footer class="reveal d6">Avanti, Palestra! 💚</footer>
+  </main>
+</body>
+</html>
