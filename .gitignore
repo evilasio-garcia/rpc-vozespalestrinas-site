@@ -35,3 +35,8 @@ desktop.ini
 
 # Misc
 *.tmp
+
+# Claude design export scaffolding (originais/preview não usados pelo site)
+uploads/
+assets/origin/
+.thumbnail
