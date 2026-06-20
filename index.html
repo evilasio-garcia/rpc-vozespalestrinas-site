@@ -207,6 +207,11 @@
           <div class="vp-imgbox" style="position:relative;padding:16px;display:flex;align-items:center;justify-content:center;height:186px;background:{{ item.bg }};">
             <span style="position:absolute;top:11px;left:11px;color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:{{ item.accent }};">{{ item.aroma }}</span>
             <img src="{{ item.img }}" alt="{{ item.title }}" style="max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.12));">
+            <sc-if value="{{ item.soldOut }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;background:rgba(248,250,246,.62);display:flex;align-items:center;justify-content:center;backdrop-filter:saturate(.6);">
+                <span style="font-family:'Anton',sans-serif;font-size:21px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#b91c1c;padding:9px 22px;border-radius:9px;transform:rotate(-7deg);box-shadow:0 8px 20px rgba(0,0,0,.32);">Esgotado</span>
+              </div>
+            </sc-if>
           </div>
           <div style="padding:14px 15px 16px;display:flex;flex-direction:column;flex:1;border-top:1px solid #eef1ea;">
             <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1f7a45;">Pet Like · UltraPads</div>
@@ -226,7 +231,7 @@
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 2"/></svg>
               Oferta termina em {{ timerStr }}
             </div>
-            <a href="{{ item.link }}" target="_blank" rel="noopener" style="margin-top:11px;text-align:center;background:#00A651;color:#fff;font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.4px;text-transform:uppercase;padding:13px;border-radius:11px;transition:all .15s;box-shadow:0 5px 14px rgba(0,166,81,.32);" style-hover="background:#00c25e;transform:translateY(-1px);">Comprar agora</a>
+            <a href="{{ item.link }}" target="_blank" rel="noopener" style="margin-top:11px;text-align:center;background:{{ item.buyBg }};color:#fff;font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.4px;text-transform:uppercase;padding:13px;border-radius:11px;transition:all .15s;box-shadow:0 5px 14px rgba(0,166,81,.32);" style-hover="background:#00c25e;transform:translateY(-1px);">{{ item.buyLabel }}</a>
           </div>
         </div>
       </sc-for>
@@ -308,28 +313,31 @@ class Component extends DCLogic {
     const timerStr = hh + ':' + mm + ':' + ss;
 
     const NG = [
-      { img: 'assets/t-Newgood-60x60cm-30unidades-frente.png',  title: '60 x 60 cm', sub: '30 unidades',  tag: '', fullPrice: 44.90, bestPrice: 39.90, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-60x60-30-unidades/' },
-      { img: 'assets/t-Newgood-60x60cm-50unidades-frente.png',  title: '60 x 60 cm', sub: '50 unidades',  tag: '', fullPrice: 64.90, bestPrice: 57.90, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-60x60-50-unidades/' },
-      { img: 'assets/t-Newgood-60x60cm-100unidades-frente.png', title: '60 x 60 cm', sub: '100 unidades', tag: 'Mais vendido', fullPrice: 109.90, bestPrice: 97.90, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-60x60-100-unidades/' },
-      { img: 'assets/t-Newgood-80x60cm-30unidades-frente.png',  title: '80 x 60 cm', sub: '30 unidades',  tag: 'Maior', fullPrice: 59.90, bestPrice: 52.90, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-80x60-30-unidades/' },
-      { img: 'assets/t-Newgood-80x60cm-100unidades-frente.png', title: '80 x 60 cm', sub: '100 unidades', tag: 'Melhor custo', fullPrice: 149.90, bestPrice: 134.90, link: 'https://www.rapidopracachorro.com.br/produtos/tapete-higienico-new-good-80x60-caes-100-unidades/' },
+      { img: 'assets/t-Newgood-60x60cm-30unidades-frente.png',  title: '60 x 60 cm', sub: '30 unidades',  tag: '', fullPrice: 46.90, bestPrice: 35.44, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-60x60-30-unidades/' },
+      { img: 'assets/t-Newgood-60x60cm-50unidades-frente.png',  title: '60 x 60 cm', sub: '50 unidades',  tag: '', fullPrice: 68.90, bestPrice: 61.15, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-60x60-50-unidades/' },
+      { img: 'assets/t-Newgood-60x60cm-100unidades-frente.png', title: '60 x 60 cm', sub: '100 unidades', tag: 'Mais vendido', fullPrice: 139.90, bestPrice: 120.91, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-60x60-100-unidades/' },
+      { img: 'assets/t-Newgood-80x60cm-30unidades-frente.png',  title: '80 x 60 cm', sub: '30 unidades',  tag: 'Maior', fullPrice: 59.90, bestPrice: 49.85, link: 'https://www.rapidopracachorro.com.br/produtos/new-good-80x60-30-unidades/' },
+      { img: 'assets/t-Newgood-80x60cm-100unidades-frente.png', title: '80 x 60 cm', sub: '100 unidades', tag: 'Melhor custo', fullPrice: 194.90, bestPrice: 157.01, link: 'https://www.rapidopracachorro.com.br/produtos/tapete-higienico-new-good-80x60-caes-100-unidades/' },
     ];
 
     const PL = [
-      { img: 'assets/t-Petlike-Lavanda-60x60cm-30unidades-frente.png',       title: '60 x 60 cm', sub: '30 unidades', aroma: 'Lavanda',        accent: '#8b5cf6', bg: 'linear-gradient(160deg,#f3effd,#ffffff)', fullPrice: 49.90, bestPrice: 44.90, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades-lavanda/' },
-      { img: 'assets/t-Petlike-CarvaoAtivado-60x60cm-30unidades-frente.png', title: '60 x 60 cm', sub: '30 unidades', aroma: 'Carvão Ativado', accent: '#475569', bg: 'linear-gradient(160deg,#eef1f5,#ffffff)', fullPrice: 52.90, bestPrice: 46.90, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades-carvao-ativado/' },
-      { img: 'assets/t-Petlike-Neutro-60x60cm-30unidades-frente.png',        title: '60 x 60 cm', sub: '30 unidades', aroma: 'Neutro',         accent: '#10b981', bg: 'linear-gradient(160deg,#ecfaf2,#ffffff)', fullPrice: 47.90, bestPrice: 42.90, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades/' },
-      { img: 'assets/t-Petlike-Bebe-60x60cm-30unidades-frente.png',          title: '60 x 60 cm', sub: '30 unidades', aroma: 'Bebê',           accent: '#38bdf8', bg: 'linear-gradient(160deg,#eaf6fe,#ffffff)', fullPrice: 49.90, bestPrice: 44.90, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades-bebe/' },
-      { img: 'assets/t-Petlike-Lavanda-80x60cm-30unidades-frente.png',       title: '80 x 60 cm', sub: '30 unidades', aroma: 'Lavanda',        accent: '#8b5cf6', bg: 'linear-gradient(160deg,#f3effd,#ffffff)', fullPrice: 64.90, bestPrice: 57.90, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-80x60-30-unidades-lavanda/' },
-      { img: 'assets/t-Petlike-CarvaoAtivado-80x60cm-30unidades-frente.png', title: '80 x 60 cm', sub: '30 unidades', aroma: 'Carvão Ativado', accent: '#475569', bg: 'linear-gradient(160deg,#eef1f5,#ffffff)', fullPrice: 67.90, bestPrice: 59.90, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-80x60-30-unidades-carvao-ativado/' },
-      { img: 'assets/t-Petlike-Neutro-80x60cm-30unidades-frente.png',        title: '80 x 60 cm', sub: '30 unidades', aroma: 'Neutro',         accent: '#10b981', bg: 'linear-gradient(160deg,#ecfaf2,#ffffff)', fullPrice: 62.90, bestPrice: 54.90, link: 'https://www.rapidopracachorro.com.br/produtos/tapete-higienico-petlike-ultra-pad-80x60-caes-30-unidades/' },
-      { img: 'assets/t-Petlike-Bebe-80x60cm-30unidades-frente.png',          title: '80 x 60 cm', sub: '30 unidades', aroma: 'Bebê',           accent: '#38bdf8', bg: 'linear-gradient(160deg,#eaf6fe,#ffffff)', fullPrice: 64.90, bestPrice: 57.90, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-80x60-30-unidades-bebe/' },
-      { img: 'assets/t-Petlike-NoPlastic-55x60cm-20unidades.png',            title: '60 x 55 cm', sub: '20 unidades', aroma: 'No Plastic · Biodegradável', accent: '#5a9e2f', bg: 'linear-gradient(160deg,#eef7e6,#ffffff)', fullPrice: 54.90, bestPrice: 49.90, link: '#' },
-      { img: 'assets/t-Petlike-NoPlastic-75x60cm-20unidades.png',            title: '75 x 60 cm', sub: '20 unidades', aroma: 'No Plastic · Biodegradável', accent: '#5a9e2f', bg: 'linear-gradient(160deg,#eef7e6,#ffffff)', fullPrice: 69.90, bestPrice: 62.90, link: '#' },
+      { img: 'assets/t-Petlike-Lavanda-60x60cm-30unidades-frente.png',       title: '60 x 60 cm', sub: '30 unidades', aroma: 'Lavanda',        accent: '#8b5cf6', bg: 'linear-gradient(160deg,#f3effd,#ffffff)', fullPrice: 54.90, bestPrice: 44.55, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades-lavanda/' },
+      { img: 'assets/t-Petlike-CarvaoAtivado-60x60cm-30unidades-frente.png', title: '60 x 60 cm', sub: '30 unidades', aroma: 'Carvão Ativado', accent: '#475569', bg: 'linear-gradient(160deg,#eef1f5,#ffffff)', fullPrice: 57.90, bestPrice: 46.55, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades-carvao-ativado/' },
+      { img: 'assets/t-Petlike-Neutro-60x60cm-30unidades-frente.png',        title: '60 x 60 cm', sub: '30 unidades', aroma: 'Neutro',         accent: '#10b981', bg: 'linear-gradient(160deg,#ecfaf2,#ffffff)', fullPrice: 54.90, bestPrice: 44.55, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades/' },
+      { img: 'assets/t-Petlike-Bebe-60x60cm-30unidades-frente.png',          title: '60 x 60 cm', sub: '30 unidades', aroma: 'Bebê',           accent: '#38bdf8', bg: 'linear-gradient(160deg,#eaf6fe,#ffffff)', fullPrice: 54.90, bestPrice: 44.55, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-60x60-30-unidades-bebe/' },
+      { img: 'assets/t-Petlike-Lavanda-80x60cm-30unidades-frente.png',       title: '80 x 60 cm', sub: '30 unidades', aroma: 'Lavanda',        accent: '#8b5cf6', bg: 'linear-gradient(160deg,#f3effd,#ffffff)', fullPrice: 65.90, bestPrice: 58.42, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-80x60-30-unidades-lavanda/' },
+      { img: 'assets/t-Petlike-CarvaoAtivado-80x60cm-30unidades-frente.png', title: '80 x 60 cm', sub: '30 unidades', aroma: 'Carvão Ativado', accent: '#475569', bg: 'linear-gradient(160deg,#eef1f5,#ffffff)', fullPrice: 71.90, bestPrice: 62.20, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-80x60-30-unidades-carvao-ativado/' },
+      { img: 'assets/t-Petlike-Neutro-80x60cm-30unidades-frente.png',        title: '80 x 60 cm', sub: '30 unidades', aroma: 'Neutro',         accent: '#10b981', bg: 'linear-gradient(160deg,#ecfaf2,#ffffff)', fullPrice: 65.90, bestPrice: 58.42, link: 'https://www.rapidopracachorro.com.br/produtos/tapete-higienico-petlike-ultra-pad-80x60-caes-30-unidades/' },
+      { img: 'assets/t-Petlike-Bebe-80x60cm-30unidades-frente.png',          title: '80 x 60 cm', sub: '30 unidades', aroma: 'Bebê',           accent: '#38bdf8', bg: 'linear-gradient(160deg,#eaf6fe,#ffffff)', fullPrice: 65.90, bestPrice: 58.42, link: 'https://www.rapidopracachorro.com.br/produtos/petlike-80x60-30-unidades-bebe/' },
+      { img: 'assets/t-Petlike-NoPlastic-55x60cm-20unidades.png',            title: '60 x 55 cm', sub: '20 unidades', aroma: 'No Plastic · Biodegradável', accent: '#5a9e2f', bg: 'linear-gradient(160deg,#eef7e6,#ffffff)', fullPrice: 54.90, bestPrice: 49.90, soldOut: true, link: '#' },
+      { img: 'assets/t-Petlike-NoPlastic-75x60cm-20unidades.png',            title: '75 x 60 cm', sub: '20 unidades', aroma: 'No Plastic · Biodegradável', accent: '#5a9e2f', bg: 'linear-gradient(160deg,#eef7e6,#ffffff)', fullPrice: 69.90, bestPrice: 62.90, soldOut: true, link: '#' },
     ];
 
     const decorate = (p) => ({
       ...p,
+      soldOut: !!p.soldOut,
+      buyLabel: p.soldOut ? 'Esgotado' : 'Comprar agora',
+      buyBg: p.soldOut ? '#9aa39a' : '#00A651',
       full: this.fmt(p.fullPrice),
       price: this.fmt(p.bestPrice * 0.9),
     });
