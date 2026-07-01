@@ -295,14 +295,18 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;couponCode&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;VOZES-COPA26&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showStickyBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { now: Date.now(), matches: null, toast: false };
+  // >>> AGENDA DE PARTIDAS — editar aqui quando mudar o jogo <<<
+  // Uma partida por linha, formato: DD/MM/AAAA;HH:MM;HH:MM;Nome da partida
+  // (data;início;fim). A UI mostra PRÓXIMA antes do início, AO VIVO entre
+  // início e fim, e ENCERRADO depois do fim.
+  static SCHEDULE = [
+    '05/07/2026;17:00;20:00;Brasil x Noruega',
+  ].join('\n');
+
+  state = { now: Date.now(), matches: this.parseMatches(Component.SCHEDULE), toast: false };
 
   componentDidMount() {
     this._t = setInterval(() => this.setState({ now: Date.now() }), 1000);
-    fetch('assets/jogos.csv', { cache: 'no-store' })
-      .then((r) => (r.ok ? r.text() : ''))
-      .then((txt) => this.setState({ matches: this.parseMatches(txt) }))
-      .catch(() => this.setState({ matches: [] }));
   }
 
   fallbackCopy(text) {
@@ -321,8 +325,8 @@ class Component extends DCLogic {
     return 'R$ ' + (Math.round(v * 100) / 100).toFixed(2).replace('.', ',');
   }
 
-  // Lê o CSV (data;inicio;fim;partida — DD/MM/AAAA, HH:MM) e devolve
-  // a lista de partidas ordenada por data/hora de início.
+  // Lê a agenda (linhas data;inicio;fim;partida — DD/MM/AAAA, HH:MM) e
+  // devolve a lista de partidas ordenada por data/hora de início.
   parseMatches(txt) {
     const out = [];
     (txt || '').split(/\r?\n/).forEach((line) => {
